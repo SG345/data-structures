@@ -1,0 +1,3 @@
+#ignore classes folder and its contents for git
+!classes/
+.DS_Store
