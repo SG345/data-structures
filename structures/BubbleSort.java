@@ -33,9 +33,9 @@ public class BubbleSort
             //throw an exception when array length is less than 1
             throw new IllegalArgumentException("Array length should be more than 1");
         }
-        this.array = array;
+        this.array = array;//both refer to the same array in memory
         
-        bubbleSort(this.array);
+        bubbleSort(this.array);//so passing array or even this.array won't matter
     }
     
     
