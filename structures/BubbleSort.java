@@ -35,7 +35,7 @@ public class BubbleSort
         }
         this.array = array;
         
-        bubbleSort(array);
+        bubbleSort(this.array);
     }
     
     
@@ -69,6 +69,24 @@ public class BubbleSort
     {
         return this.array;
     }
+    
+    
+    /**
+    *@param array[] the new integer array
+    *@exception IllegalArgumentException throw an exception when length of array is <= 1
+    */
+    public void setArray(int array[])
+    {
+        if(array.length <= 1){
+            //throw an exception when array length is less than 1
+            throw new IllegalArgumentException("Array length should be more than 1");
+        }
+        this.array = array;
+        
+        bubbleSort(this.array);
+        
+    }
+    
     
     /**
     *Print string representation of the object
