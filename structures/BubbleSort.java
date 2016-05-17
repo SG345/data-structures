@@ -61,6 +61,16 @@ public class BubbleSort
     }
     
     /**
+    *
+    *Getter for integer array
+    */
+    public int[] getArray()
+    //post: returns the sorted integer array
+    {
+        return this.array;
+    }
+    
+    /**
     *Print string representation of the object
     */
     public String toString()
