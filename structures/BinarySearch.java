@@ -1,8 +1,7 @@
 package structures;
 
-import structure.BubbleSort;
-
-
+import java.util.Arrays;
+import structures.BubbleSort;
 /**
 *<h1>Binary Search </h1>
 *
@@ -12,7 +11,6 @@ import structure.BubbleSort;
 *@author: Devesh Shetty
 */
 public class BinarySearch{
-    
     //TODO: very tightly coupled to BubbleSort, must some other pattern
     //Very poorly designed, has flaws
     
@@ -62,17 +60,18 @@ public class BinarySearch{
     {
         int position = -1;
         int low = 0;
-        int high = array.length;
+        int high = array.length - 1;
+        int count = 0;
         
         while(low <= high)
         {
             //we try to achieve the element's position by comparing it with mid value
             //we adjust the high and low value accordingly
-            int mid = low + (high - low)/2;
-            
+            int mid = (high + low)/2;
             if(array[mid] == element){
                 //element found
                 position = mid;
+                break;
             }
             else if(element > array[mid]){
                 //if element > mid value that indicates it is in the right portion of the array
@@ -96,7 +95,7 @@ public class BinarySearch{
     
     public String toString()
     {
-        return Arrays.toString(this.array) +"\n Position: "+this.position;
+        return  "Element found at position: "+this.position +" in Array: "+Arrays.toString(this.array);
         
     }
     
