@@ -168,6 +168,14 @@ public class Vector
     }
     
     /**
+    *This method returns the capacity of the vector
+    *@return int the capacity of the vector
+    */
+    public int capacity(){
+        return data.length;
+    }
+    
+    /**
     *This method ensures if the minimum capacity is available. If it is not, it resizes the vector
     *@param minCapacity the minimum capacity the vector should have
     */
