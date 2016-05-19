@@ -1,3 +1,4 @@
+package structures;
 /**
 *<h1>Vector</h1>
 *<p>
@@ -41,13 +42,31 @@ public class Vector
     }
 
     /**
+    *This constructor uses the initialCapacity to create a vector of the specified size and also has an capacityIncrement value to resize the vector when it is full
+    *
+    *@param initialCapacity the initial size of the vector
+    *@param capacityIncrement the capacity increment value
+    *@exception IllegalArgumentException if supplied capacity or increment is < 0
+    */
+    public Vector(int initialCapacity, int capacityIncrement){
+        if(initialCapacity < 0 || capacityIncrement < 0){
+            throw new IllegalArgumentException("capacity or increment can not be negative");
+        }
+        
+        data = new Object[initialCapacity];
+        elementCount = 0;
+        this.capacityIncrement = capacityIncrement;
+        
+    }
+    
+    /**
     *This is a getter method to get the object at specified index
     *@param index the location whose value is to be fetched in a vector
     *@return Object if value exists at given index location, else returns null
     *@exception ArrayIndexOutOfBoundsException if the index value is greater than or equal to the size of the vector
     */
     public Object get(int index){
-        if(index >= this.size()){
+        if(index >= this.size() || index < 0){
             //index should be <  size()
             throw new ArrayIndexOutOfBoundsException("Invalid Index");
         }
@@ -64,7 +83,7 @@ public class Vector
     *@exception ArrayIndexOutOfBoundsException On supplying an index value greater than the size of the vector
     */
     public Object set(int index, Object obj){
-        if(index >= size()){
+        if(index >= size() || index < 0){
             throw new ArrayIndexOutOfBoundsException("Invalid index value supplied");    
         }
         
@@ -93,13 +112,13 @@ public class Vector
     *@exception ArrayIndexOutOfBoundsException on supplying an invalid index
     */
     public void add(int index, Object obj){
-        if(index >= this.size()){
+        if(index >= this.size() || index < 0){
             throw new ArrayIndexOutOfBoundsException("Invalid Index");
         }
         //ensure sufficient capacity
         ensureCapacity(elementCount + 1);
         //copy elements from right to left without destroying existing data
-        for(int i = elemenCount; i > index; i--)
+        for(int i = elementCount; i > index; i--)
         {
             data[i] = data[i-1];
         }
@@ -116,6 +135,74 @@ public class Vector
     *@exception ArrayIndexOutOfBoundsException on supplying an invalid index
     */
     public Object remove(int index){
+        if(index >= this.size() || index < 0){
+            throw new ArrayIndexOutOfBoundsException("Invalid Index");
+        }
+        //get the object existing at the specified index
+        Object res = this.get(index);
+        elementCount --;
+        while(index < elementCount){
+            //shifting elements to the left
+            data[index] = data[index+1];
+            index++;
+        }
+        //empty the value at the last index
+        data[elementCount] = null;
+        return res;
+    }
+    
+    /**
+    *This method checks whether elements exist in the vector or not
+    *@return true if there are no elements int the vector else false
+    */
+    public boolean isEmpty(){
+        return this.size() == 0;
+    }
+    
+    /**
+    *This method returns the size of the vector
+    *@return int size of the vectore
+    */
+    public int size(){
+        return elementCount;
+    }
+    
+    /**
+    *This method ensures if the minimum capacity is available. If it is not, it resizes the vector
+    *@param minCapacity the minimum capacity the vector should have
+    */
+    public void ensureCapacity(int minCapacity){
+        
+        if(data.length < minCapacity){
+            int newLength = data.length;
+            if(capacityIncrement == 0){
+                //if increment is 0, we can use the doubling technique to resize the vector which has the complexity of O(n)
+                //1 + 2 + 4 + ... + n/2 = n-1, the total no of times elements were copied 
+                if(newLength ==0){
+                    newLength = 1;
+                }
+                while(newLength < minCapacity){
+                    //keep on multiplying by 2,i.e, double it
+                    newLength<<=1;
+                }
+            }
+            {
+                //increase by user specified value
+                while(newLength < capacityIncrement){
+                    newLength += capacityIncrement;
+                }
+            }
+            
+            Object newData[] = new Object[newLength];
+            //copy old data to new array
+            for(int i = 0;i< elementCount; i++){
+                newData[i] = data[i];
+            }
+            data = newData;
+            
+        }
+        
+        //do nothing if length of vector is greater than the minimum capacity
         
     }
     
