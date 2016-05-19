@@ -181,7 +181,7 @@ public class Vector
     */
     public void ensureCapacity(int minCapacity){
         
-        if(data.length < minCapacity){
+        if(this.capacity() < minCapacity){
             int newLength = data.length;
             if(capacityIncrement == 0){
                 //if increment is 0, we can use the doubling technique to resize the vector which has the complexity of O(n)
@@ -210,7 +210,7 @@ public class Vector
             
         }
         
-        //do nothing if length of vector is greater than the minimum capacity
+        //do nothing if capacity of vector is greater than the minimum capacity
         
     }
     
