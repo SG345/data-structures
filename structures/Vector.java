@@ -211,7 +211,6 @@ public class Vector
         }
         
         //do nothing if capacity of vector is greater than the minimum capacity
-        
     }
     
 }
