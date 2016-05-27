@@ -16,7 +16,7 @@ public class InsertionSort{
     *Elements in the array who need to be sorted are known as key
     *@param arr the array to be sorted in non-decreasing order
     */
-    public static sort(int arr[]){
+    public static void sort(int arr[]){
         for(int i = 1; i < arr.length; i++){
             // elements in the array to the left of i value are considered to be in sorted order
             //key contains the element we need to place in the left of the array such elements < key are smaller than it
