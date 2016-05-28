@@ -35,6 +35,7 @@ public class MergeSort{
     
     /**
     *This method merges the left and right sub-array
+    *The left and right sub-array are already sorted
     *Compares the element in left and right sub-array and adds the smallest element to output array
     *@param arr[] the integer array
     *@param p start index of the left sub-array
