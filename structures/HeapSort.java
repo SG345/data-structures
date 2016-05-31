@@ -15,8 +15,8 @@ public class HeapSort{
     *@return parent index position
     */
     private static int getParent(int i){
-        //parent position will be at i/2 index
-        return ( i >> 2 );
+        //parent position will be at (i-1)/2 index for 0 based array indexes
+        return ( (i-1) >> 1 );
     } 
     
     /**
@@ -25,7 +25,8 @@ public class HeapSort{
     *@return the left child index position
     */
     private static int getLeftChild(int i){
-        return (i << 2) - 1;
+        //left child will be at position at i*2 + 1 for 0 based array indexes
+        return (i << 1) + 1;
     }
     
     /**
@@ -34,7 +35,8 @@ public class HeapSort{
     *@return int the index of the right child
     */
     private static int getRightChild(int i){
-        return i << 2;
+        //right child will be at position at i*2+2 for 0 based array indexes
+        return (i << 1) + 2;
     }
     
     /**
@@ -42,6 +44,22 @@ public class HeapSort{
     *@param arr the integer array
     */
     public static void sort(int arr[]){
+        //build the maxHeap
+        buildMaxHeap(arr);
+        int heapSize = arr.length - 1;//size of the heap
+        for(int i = arr.length - 1; i>=1; i--){
+            //since, after building the first max-heap
+            //the element stored at index 0 is the one with highest value
+            //we exchange it with the element stored at last position
+            int temp = arr[0];//arr[0] contains the largest value
+            arr[0] = arr[i];
+            arr[i] = temp;
+            
+            heapSize--;//decrement the size of the heap, since the largest element is now stored at index i and we no longer wish to alter it's position
+            
+            maxHeapify(arr, 0, heapSize);//build the maxHeap again but this time with one element less than the previous one
+            
+        }
         
     }
     
@@ -74,7 +92,7 @@ public class HeapSort{
         
         //assume largest to be the element at index i
         int largest = i;//stores the index value of the largest of three: i, leftChild(i), rightChild(i)
-        
+        System.out.println("Parent= "+i+" Left= "+leftChildIndex +" Right= "+rightChildIndex+" HeapSize= "+heapSize);
         if(leftChildIndex <= heapSize && arr[leftChildIndex] > arr[i]){
             //left child has a greater value than i
             largest = leftChildIndex;
