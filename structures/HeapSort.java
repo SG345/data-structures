@@ -92,7 +92,7 @@ public class HeapSort{
         
         //assume largest to be the element at index i
         int largest = i;//stores the index value of the largest of three: i, leftChild(i), rightChild(i)
-        System.out.println("Parent= "+i+" Left= "+leftChildIndex +" Right= "+rightChildIndex+" HeapSize= "+heapSize);
+        //System.out.println("Parent= "+i+" Left= "+leftChildIndex +" Right= "+rightChildIndex+" HeapSize= "+heapSize);
         if(leftChildIndex <= heapSize && arr[leftChildIndex] > arr[i]){
             //left child has a greater value than i
             largest = leftChildIndex;
