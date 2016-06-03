@@ -1,5 +1,9 @@
 package structures;
 
+/**
+*
+*@author: Devesh Shetty
+*/
 public class QuickSort{
     
     
