@@ -1,6 +1,7 @@
 package structures;
 
 /**
+*QuickSort
 *
 *@author: Devesh Shetty
 */
