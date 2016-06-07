@@ -23,12 +23,15 @@ public class Stack{
         
     }
     
+    //the stack-top pointer
+    private Node top;
+    
+    //the size of the stack
+    private int size;
+     
     public Stack(){
     
     }
-    
-    //the stack-top pointer
-    private Node top;
     
     /**
     *Adds the data to the top of the stack
@@ -38,22 +41,41 @@ public class Stack{
         
         if(top == null){
             //stack is empty
-        
+            
+            //add the first node to the stack
             top = new Node();
             top.stringData = data;
-            top.next = null;
+            top.next = null;//the first node's next value always points to null
         }
         else{
             //stack in non-empty
             
+            Node newNode = new Node();
+            newNode.stringData = data;
+            //new node will point to the next element to it in the stack
+            newNode.next = top;
+            
+            //make the top pointer point to the new node of the stack
+            top = newNode;
         }
+        //increment the size of the stack
+        size++;
         
     }
     
     /**
-    *
+    *Adds the data to top of the stack
+    *@param data adds the character data to the top of the stack
+    */
+    public void push(char data){
+        //convert the character to string and call the push(String) method
+        this.push(data+"");
+    }
+    
+    /**
+    *Removes and the returns the element at the top of the stack
     *@return the data item stored at top
-    *@exceptions throws NullPointerException when the stack is empty
+    *@exception throws NullPointerException when the stack is empty
     */
     public String pop(){
         
@@ -62,8 +84,17 @@ public class Stack{
             throw new NullPointerException("Stack is empty");
         }
         //stack is non-empty
-        return "";
         
+        //get the data stored at top of the stack
+        String data = top.stringData;
+        
+        //pop the top node, and now let the top pointer point to the next node
+        top = top.next;
+    
+        //decrement the size of the stack
+        size--;
+        
+        return data;
     }
 
     
@@ -75,7 +106,29 @@ public class Stack{
         //if top points to null that indicates stack is empty
         return top == null;
     }
+   
+    /**
+    *This method returns the stack-size
+    *@return the size of the stack
+    */
+    public int size(){
+        return this.size;
+    }
     
+    
+    public String toString(){
+        String res = "[ ";
+        //pointer to help us traverse throughout the stack
+        Node pointIndex = top;
+        //res contains the stack content starting from stack top
+        while(pointIndex != null){
+            res+= pointIndex.stringData+" ";
+            //point to the next node
+            pointIndex = pointIndex.next;
+        }
+        res+=" ] \nStack size: "+this.size();
+        return res;
+    }
     
     
 }

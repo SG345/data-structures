@@ -9,8 +9,10 @@ class Main{
         PrintWriter out = new PrintWriter(System.out, true);
         
         Stack s1 = new Stack();
-        s1.push("The");
-        s1.push("dog");
+        for(char i = 'a';i <= 'z'; i++){
+            //adding the alphabets to the stack
+            s1.push(i);
+        }
         //should print in reverse
         out.println(s1);
         
@@ -23,14 +25,16 @@ class Main{
         s2.push("Four");
         out.println(s2);
         
+        out.println("\n************Randomized*************");
         Stack s3 = new Stack();
-        Random r = new Random(255);
+        Random r = new Random();
         for(int i = 0; i <= 10;i++){
-            int n = r.nextInt();
-            if( (n & (n-1))== 0 ){
+            int n = r.nextInt(200);
+            if( (n & 1) == 0 ){
+                //indicates first bit is 0 so now is even
                 //even no 
                 out.println("Pushing data = "+n);
-                s3.push("Data "+n);
+                s3.push(""+n);
             }
             else if(!s3.isEmpty()){
                 //stack is not empty then pop
@@ -38,7 +42,6 @@ class Main{
             }
             
         }
-        out.println("************Randomized*************");
         out.println(s3);
         out.println("***********************************");
         
