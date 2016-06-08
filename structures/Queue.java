@@ -81,6 +81,7 @@ public class Queue
         first = first.next;
         //decrement the size of the queue
         size--;
+        
         return data;
     }
     

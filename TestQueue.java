@@ -23,8 +23,9 @@ class Main{
         q2.dequeue();
         q2.enqueue("Four");
         out.println(q2);
-        for(int i = 1; i<=3;i++){
-            q2.dequeue();    
+        int size = q2.size();
+        for(int i = 1; i <= size ;i++){
+            out.println("Removing = "+q2.dequeue());    
         }
         out.println(q2);
         
