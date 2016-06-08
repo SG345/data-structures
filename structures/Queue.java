@@ -33,6 +33,26 @@ public class Queue
     */
     public void enqueue(String data){
         
+        //create a new node
+        Node node = new Node();
+        node.data = data;
+        node.next = null;
+        
+        if(first == null){
+            //if queue is empty
+            //first and last will point to the only node available in the queue
+            last = first = node;
+        }
+        else{
+            //add the node to the end of the qeueue
+            last.next = node;
+            //update the last pointer
+            last = last.next;
+            
+        }
+        
+        size++;//increment the size of the queue
+        
     }
     
     /**
@@ -50,7 +70,17 @@ public class Queue
     *@exception throws NullPointerException when we try to dequeue a queue which is empty
     */
     public String dequeue(){
-        String data = "";
+
+        if(this.isEmpty()){
+            //nullpointerException since queue is empty
+            throw new NullPointerException("Can not dequeue element from an empty queue");
+        }
+        //remove the node stored at first position in the queue
+        String data = first.data;
+        //update the first pointer
+        first = first.next;
+        //decrement the size of the queue
+        size--;
         return data;
     }
     
@@ -70,7 +100,16 @@ public class Queue
     }
     
     public String toString(){
-        return "";
+        String res = "[ ";
+        Node temp = first;
+        
+        while(temp != null){
+            res+= temp.data+" ";
+            temp = temp.next;
+        }
+        res+=" ]\n QueueSize= "+this.size();
+        
+        return res;
     }
     
 }
