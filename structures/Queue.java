@@ -36,6 +36,14 @@ public class Queue
     }
     
     /**
+    *
+    *@param character data to be added to the queue
+    */
+    public void enqueue(char data){
+        this.enqueue(data+"");
+    }
+    
+    /**
     *Removes and returns the data stored in the first position of the queue
     *
     *@return the data of the element stored at first location in the queue\
