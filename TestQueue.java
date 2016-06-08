@@ -23,6 +23,10 @@ class Main{
         q2.dequeue();
         q2.enqueue("Four");
         out.println(q2);
+        for(int i = 1; i<=3;i++){
+            q2.dequeue();    
+        }
+        out.println(q2);
         
         out.println("\n************Randomized*************");
         Queue q3 = new Queue();
