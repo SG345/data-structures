@@ -8,8 +8,13 @@ class Main{
         
         PrintWriter out = new PrintWriter(System.out,true);
         Random r = new Random();
-        for(int i = 0; i< 10;i++){
-            SieveOfEratosthenes.printPrimes(r.nextInt(700));
+        for(int i = 0; i< 3;i++){
+            int n = r.nextInt(700);
+            System.out.println("***************Prime upto "+n+"*****************");
+            
+            SieveOfEratosthenes.printPrimes( n ) ;
+            
+            System.out.println("**************************************");
         }
     }
     
