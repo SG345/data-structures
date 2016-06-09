@@ -3,6 +3,10 @@ package structures;
 /**
 *Sieve of Eratosthenes
 *
+*A prime number is a natural number that has exactly two distinct natural number divisors: 1 and itself.
+*
+*This algorithm is used for finding all prime numbers up to any given limit. It does so by iteratively marking as composite (i.e., not prime) the multiples of each prime, starting with the multiples of 2.
+*
 *@author: Devesh Shetty
 */
 public class SieveOfEratosthenes{
