@@ -29,7 +29,48 @@ public class SinglyLinkedList<T extends Comparable>{
     
     private int size;//the size of the list
     
+    /**
+    *Adds a data item to the end of the list
+    *
+    *@param data the data to be added to the list
+    */
+    public void add(T data){
+        
+        Node node = new Node();
+        node.data = data;
+        node.next = null;
+        
+        if( head == null ){
+            
+            //list is empty
+            //first node to be added to the list
+            //head and last will point to the one and only node in the list
+            head = tail = node;
+            
+        }
+        else{
+            
+            //list is not empty
+            //make the last node point to the new node 
+            tail.next = node;
+            
+            //update the tail node
+            tail = tail.next;
+            
+        }
+        
+        this.size++;
+        
+    }
     
+    
+    /**
+    *Sorts the list using the Comparator
+    *
+    */
+    public void sortList(){
+        //TODO sorting
+    }
     
     /**
     *
@@ -40,5 +81,33 @@ public class SinglyLinkedList<T extends Comparable>{
         return this.size;
     }
     
+    /**
+    *@return true if the list is empty else false
+    */
+    public boolean isEmpty(){
+    
+        return ( head == null );
+    }
+    
+    /**
+    *
+    *@return a string formatted list starting from head node to tail node
+    */
+    @Override
+    public String toString(){
+        String res = "[ ";
+        
+        Node temp = head;
+        
+        while( temp != null ){
+            res += temp.data + " ";
+            //update the temp to the next node
+            temp = temp.next;
+        }
+        
+        res += "]";
+        
+        return res;
+    }
     
 }
