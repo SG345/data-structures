@@ -1,5 +1,6 @@
 package structures;
 import java.util.Iterator;
+import structures.BTPreorderIterator;
 /**
 *<h1>Binary Tree </h1>
 *Trees are hierarchical data structures
@@ -15,7 +16,7 @@ public class BinaryTree<E>{
     //A path is the unique shortest sequence of edges from node n to an ancestor
     //The length of the path is the number of edges it mentions
     //The height of a node n in a tree is the length of any longest path between the leaf and n
-    //The depth ( or level) of a node n in its tree T is the lenght of path from n to T's root
+    //The depth ( or level) of a node n in its tree T is the length of path from n to T's root
     //The degree of a node n is the number of its children
     
     
@@ -56,11 +57,11 @@ public class BinaryTree<E>{
     /**
     *Constructor that generates a tree referencing the value and two subtrees
     *@param value; the value of the node
-    *@param leftsubTree the left sub-tree of the node
-    *@param rightsubTree the right sub-tree of the node
+    *@param left the left sub-tree of the node
+    *@param right the right sub-tree of the node
     *@exception throws NullPointerException if value supplied is null
     */
-    public BinaryTree(E value, BinaryTree<E> leftsubTree, BinaryTree<E> rightsubTree){
+    public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right){
         
         if(value == null){
             throw new NullPointerException("The value must be non-null");
@@ -71,11 +72,13 @@ public class BinaryTree<E>{
         if(left == null){
             left = new BinaryTree<E>();    
         }
+        
         setLeft(left);
         
         if(right == null){
             right = new BinaryTree<E>();
         }
+        
         setRight(right);
         
     }
@@ -159,11 +162,19 @@ public class BinaryTree<E>{
    
     
     /**
-    *
+    *@param choice == 1, for preorder iterator, choice == 2 for inorder iterator, choice == 3 for postorder iterator
     *@return  an in-order iterator of the elements
     */
-    public Iterator<E> iterator(){
-        return null;
+    public Iterator<E> iterator(int choice){
+        Iterator<E> it = null;
+        
+        switch(choice){
+            case 1: 
+                it = new BTPreorderIterator<E>(this);
+                break;
+        }
+        
+        return it;
     }
     
     /**

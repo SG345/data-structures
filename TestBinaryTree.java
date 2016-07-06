@@ -1,5 +1,6 @@
 import structures.BinaryTree;
 import java.io.*;
+import java.util.Iterator;
 
 class Main{
 
@@ -13,8 +14,18 @@ class Main{
         rightTree.setLeft(new BinaryTree<Integer>(32));
         rightTree.setRight(new BinaryTree<Integer>(38));
         
-        BinaryTree<Integer> root = new BinaryTree<Integer>(0, leftTree, rightTree);
+        BinaryTree<Integer> root = new BinaryTree<Integer>(100, leftTree, rightTree);
         
+        printTree(root.iterator(1));//preorder
+        
+    }
+    
+    private static void printTree(Iterator it){
+        
+        while(it.hasNext()){
+            Object val = it.next();
+            System.out.println(val);
+        }
         
     }
     
