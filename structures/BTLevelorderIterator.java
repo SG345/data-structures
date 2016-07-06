@@ -6,13 +6,13 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 /**
-*<h1>Preorder Traversal</h1>
+*<h1>Level order Traversal</h1>
 *
-*An iterator which can be used for postorder traversal of a tree
+*An iterator which can be used for levelorder traversal of a tree
 *
 *@author: Devesh Shetty
 */
-public class BTPostorderIterator<E> implements Iterator<E>{
+public class BTLevelorderIterator<E> implements Iterator<E>{
     
     // root of the tree to be traversed
     protected BinaryTree<E> root;
@@ -20,11 +20,11 @@ public class BTPostorderIterator<E> implements Iterator<E>{
     protected Queue<BinaryTree<E>> todo;
     
     /**
-    *Construct an iterator to traverse in postorder
+    *Construct an iterator to traverse in levelorder
     *
     *@param root of the tree to be traversed
     */
-    public BTPostorderIterator(BinaryTree<E> root){
+    public BTLevelorderIterator(BinaryTree<E> root){
         todo = new LinkedList<BinaryTree<E>>();
         this.root = root;
         reset();
@@ -36,23 +36,11 @@ public class BTPostorderIterator<E> implements Iterator<E>{
     public void reset(){
         //empty the queue
         todo.clear();
-        enqueuePostorder(root);
-    }
-    
-    /**
-    *Enqueue all values found in tree rooted at current in preorder
-    */
-    protected void enqueuePostorder(BinaryTree<E> current){
-        //This is an recursive implementation of postorder traversal of a tree
-        //as each node of the tree are visited once, the complexity is O(n)
-        if(current.isEmpty()){
-            return;
+        if(root != null){
+            todo.add(root);
         }
-        enqueuePostorder(current.left());
-        enqueuePostorder(current.right());
-        todo.add(current);
     }
-    
+  
     /**
     *@return true if and only if iterator is not finished
     */
@@ -66,7 +54,18 @@ public class BTPostorderIterator<E> implements Iterator<E>{
     *@return the current value
     */
     public E next(){
-        return todo.remove().value();
+        
+        BinaryTree<E> current = todo.remove(); 
+        
+        if(!current.left().isEmpty()){
+            todo.add(current.left());
+        }
+        
+        if(!current.right().isEmpty()){
+            todo.add(current.right());
+        }
+        
+        return current.value();
     }
     
     /**

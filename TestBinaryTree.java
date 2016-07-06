@@ -19,6 +19,8 @@ class Main{
         printTree(root.iterator(1));//preorder
         printTree(root.iterator(2));//in-order
         printTree(root.iterator(3));//postorder
+        printTree(root.iterator(4));//levelorder
+
     }
     
     private static void printTree(Iterator it){

@@ -3,6 +3,7 @@ import java.util.Iterator;
 import structures.BTPreorderIterator;
 import structures.BTInorderIterator;
 import structures.BTPostorderIterator;
+import structures.BTLevelorderIterator;
 
 /**
 *<h1>Binary Tree </h1>
@@ -183,7 +184,7 @@ public class BinaryTree<E>{
                 break;
             
             case 4:
-                
+                it = new BTLevelorderIterator<E>(this);
                 break;
         }
         
