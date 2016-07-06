@@ -1,6 +1,8 @@
 package structures;
 import java.util.Iterator;
 import structures.BTPreorderIterator;
+import structures.BTInorderIterator;
+
 /**
 *<h1>Binary Tree </h1>
 *Trees are hierarchical data structures
@@ -171,6 +173,9 @@ public class BinaryTree<E>{
         switch(choice){
             case 1: 
                 it = new BTPreorderIterator<E>(this);
+                break;
+            case 2:
+                it = new BTInorderIterator<E>(this);
                 break;
         }
         

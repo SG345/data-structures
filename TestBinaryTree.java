@@ -17,16 +17,20 @@ class Main{
         BinaryTree<Integer> root = new BinaryTree<Integer>(100, leftTree, rightTree);
         
         printTree(root.iterator(1));//preorder
-        
+        printTree(root.iterator(2));//in-order
+        //printTree(root.iterator(3));//postorder
     }
     
     private static void printTree(Iterator it){
+        
+        System.out.println("*********Traversal*********");
         
         while(it.hasNext()){
             Object val = it.next();
             System.out.println(val);
         }
         
+        System.out.println();
     }
     
 }
