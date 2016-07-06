@@ -7,23 +7,35 @@ package structures;
 *Main uses of tree include maintaining hierarchical data, providing moderate access and insert/delete operations
 *@author: Devesh Shetty
 */
-public class BinaryTree{
+public class BinaryTree<E>{
+    //the value of the node
+    protected E val;
+    //the parent of the node
+    protected BinaryTree<E> parent;
+    //the children of the node
+    protected BinaryTree<E> left, right;
     
-    private class Node{
-        int data;
-        Node leftChild;
-        Node rightChild;
-    }
-    
-    public void insert(int data){
+    /**
+    *
+    */
+    public BinaryTree<E>(){
         
     }
     
-    public void delete(int data){
+    /**
+    *
+    */
+    public BinaryTree<E>(E value){
         
     }
     
-    public 
+    /**
+    *
+    */
+    public BinaryTree<E>(E value, BinaryTree<E> leftsubTree, BinaryTree<E> rightsubTree){
+        
+    }
+    
     
     
 }
