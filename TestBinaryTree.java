@@ -21,6 +21,10 @@ class Main{
         printTree(root.iterator(3));//postorder
         printTree(root.iterator(4));//levelorder
 
+        printTreeProperties(root);
+        printTreeProperties(leftTree);
+        printTreeProperties(rightTree);
+        
     }
     
     private static void printTree(Iterator it){
@@ -33,6 +37,17 @@ class Main{
         }
         
         System.out.println();
+    }
+    
+    private static void printTreeProperties(BinaryTree<Integer> root){
+        PrintStream out = System.out;
+        out.println("**********Properties*******");
+        out.println("Height= "+root.height());
+        out.println("Size= "+ root.size());
+        out.println("isFull= "+root.isFull() );
+        out.println("depth= "+ root.depth());
+        out.println("Root node= "+root.root().value() );
+        out.println();
     }
     
 }

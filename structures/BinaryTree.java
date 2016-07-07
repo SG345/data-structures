@@ -22,7 +22,8 @@ public class BinaryTree<E>{
     //The height of a node n in a tree is the length of any longest path between the leaf and n
     //The depth ( or level) of a node n in its tree T is the length of path from n to T's root
     //The degree of a node n is the number of its children
-    
+    //The no of nodes in  a full binary tree is 1 less than the number of leaves
+    //A full binary tree of height h >=0 has 2^h leaves
     
     //the value of the node
     protected E val;
@@ -230,4 +231,74 @@ public class BinaryTree<E>{
       return (val == null);  
     }
     
+    /**
+    *
+    */
+    
+    /**
+    *@return root of the tree
+    */
+    public BinaryTree<E> root(){
+        if(parent == null){
+            return this;
+        }
+        else{
+            return parent.root();
+        }
+        
+    }
+    
+    /**
+    *@return depth of the tree
+    */
+    public int depth(){
+        //For full trees, this method approximately has a complexity of O(log n)
+        
+        if(parent == null){
+            return 0;
+        }
+        
+        return 1 + parent.depth();
+        
+    }
+    
+    /**
+    *@return the height of a node in the tree
+    */
+    public int height(){
+        
+        if(isEmpty()){
+            return -1;
+        }
+        //This method takes O(n) time to execute on a subtree with n nodes
+        
+        //The height of a tree is 1 more than the tallest subtree
+        return 1 + Math.max(left.height(), right.height());
+        
+    }
+    
+    /**
+    *@return the size of subtree
+    */
+    public int size(){
+        
+        if(isEmpty()){
+            return 0;
+        }
+        //The complexity is O(n)
+        return left.size() + right.size() + 1;
+        
+    }
+    
+    /**
+    *@return true if and only if tree rooted at n is full
+    */
+    public boolean isFull(){
+        //A full binary tree of height h >= 0 has 2^(h+1) - 1 nodes
+        int h = height();
+        int s = size();
+        //This function has a complexity of O(n)
+        //shifting 1 to left h + 1 binary places efficiently computes 2^(h+1)
+        return s == ( ( 1 << (h+1)) - 1 );
+    }
 }
