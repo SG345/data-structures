@@ -94,20 +94,30 @@ public class UnionFind{
         
     }
     
+    /**
+    *
+    */
     public int find(int p){
+        //Recursively iterate back to get the root of the site
         while(p != id[p]){
             p = id[p];
         }
         return p;
     }
     
+    
+    /**
+    *quickUnion unlike union uses "links" which denotes the name of another site in the same component
+    *
+    */
     public void quickUnion(int p, int q){
-        int pId = find(p);
-        int qId = find(q);
+        int pRoot = find(p);
+        int qRoot = find(q);
         
-        if(pId == qId) return;
+        if(pRoot == qRoot) return;
         
-        id[pId] = qId;
+        //change the root of the site 
+        id[pRoot] = qRoot;
         
         count--;
         
