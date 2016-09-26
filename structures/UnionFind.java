@@ -40,7 +40,12 @@ public class UnionFind{
         return count;
     }
     
-    public int find(int p){
+    /**
+    *The find method uses quick-find to get the component name
+    *
+    *@param p: the node
+    */
+    public int quickFind(int p){
         
         if(p >= id.length || p < 0){
             //throw an exception when the specified site does not exist
@@ -70,8 +75,8 @@ public class UnionFind{
     *@param q component
     */
     public void union(int p, int q){
-        int pId = find(p);
-        int qId = find(q);
+        int pId = quickFind(p);
+        int qId = quickFind(q);
         
         //don't do anything 
         //if p and q are in the same component
@@ -86,6 +91,25 @@ public class UnionFind{
         }
         //decrement the no of components by 1
         count --;
+        
+    }
+    
+    public int find(int p){
+        while(p != id[p]){
+            p = id[p];
+        }
+        return p;
+    }
+    
+    public void quickUnion(int p, int q){
+        int pId = find(p);
+        int qId = find(q);
+        
+        if(pId == qId) return;
+        
+        id[pId] = qId;
+        
+        count--;
         
     }
     
