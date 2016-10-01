@@ -8,10 +8,11 @@ class Main{
         
         PrintStream out = System.out;
         //uses quickFind
+        //takes up O(MN) where M is the no of connections and N is the number of sites
         out.println();
         out.println("*************Using QuickFind***************");
         out.println();
-        UnionFind uf1 = new UnionFind(20);
+        UnionFind uf1 = new UnionFind(20, false);
         out.println("Component 2 to component 7: "+uf1.connected(2, 7));
         Random r = new Random();
         for(int i = 0; i < 30; i++){
@@ -29,10 +30,11 @@ class Main{
         }
         
         //uses QuickUnion
+        //still take up O(MN) in worst case
         out.println();
         out.println("*************Using QuickUnion***************");
         out.println();
-        UnionFind uf2 = new UnionFind(30);
+        UnionFind uf2 = new UnionFind(30, false);
         
         for(int i = 0; i < 30; i++){
             int p = r.nextInt(25);
@@ -48,7 +50,29 @@ class Main{
             }
         }
         
-
+        //uses WeightedQuickUnion
+        //take up O(MlgN)
+        out.println();
+        out.println("*******************Using WeightedQuickUnion**********");
+        out.println();
+        UnionFind weightedUF = new UnionFind(50, true);
+        for(int i = 0; i < 30; i++){
+            int p = r.nextInt(25);
+            int q = r.nextInt(15);
+            weightedUF.weightedUnion(p, q);
+        }
+        
+        for(int i = 0; i < 30; i++){
+            for(int j = 0; j < 30; j++){
+                if(i == j) continue;
+                
+                out.println("Site "+i+" connected to Site "+j+" : "+weightedUF.connected(i, j));
+            }
+        }
+        
+        
+        
+        
         
     }
     
