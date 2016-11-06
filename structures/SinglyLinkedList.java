@@ -72,7 +72,7 @@ public class SinglyLinkedList<T extends Comparable>{
     */
     public void swapNodes(T data1, T data2){
         //the list is empty
-        if(head == null){
+        if(isEmpty()){
             return;
         }
         
@@ -106,6 +106,7 @@ public class SinglyLinkedList<T extends Comparable>{
         if(prev1 != null){
             prev1.next = node2;
         }else{
+            //indicates node1 is the head node
             //make node2 the new head
             head = node2;
         }
@@ -113,6 +114,7 @@ public class SinglyLinkedList<T extends Comparable>{
         if(prev2 != null){
             prev2.next = node1;
         }else{
+            //indicates node2 is the head node
             //make node1 the new head
             head = node1;
         }
@@ -131,6 +133,33 @@ public class SinglyLinkedList<T extends Comparable>{
         Node temp = node2.next;
         node2.next = node1.next;
         node1.next = temp;
+        
+    }
+    
+    /**
+    *Reverses the list 
+    */
+    public void reverse(){
+        
+        if(isEmpty() || size() == 1)
+        {
+            //the list is empty or the list is of size 1
+            return;
+        }
+        
+        Node temp = head,
+             current = null,
+             prev = null;
+        
+        tail = temp;
+        
+        while(temp != null){
+            current = temp;
+            temp = temp.next;
+            current.next = prev;
+            prev = current;
+        }
+        head = current;
         
     }
     

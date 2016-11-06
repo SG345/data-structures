@@ -54,6 +54,9 @@ class Main{
         integerList2.swapNodes(2000, 5000);
         System.out.println(integerList2);
 
+        integerList2.reverse();
+        System.out.println(integerList2);
+
         
     }
     
