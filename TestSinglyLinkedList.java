@@ -38,6 +38,23 @@ class Main{
         
         System.out.println(integerList);
         
+        
+        SinglyLinkedList<Integer> integerList2 = new SinglyLinkedList();
+        integerList2.add(2000);
+        integerList2.add(1000);
+        integerList2.add(3000);
+        integerList2.add(4000);
+        integerList2.add(10000);
+        integerList2.add(5000);
+        
+        System.out.println(integerList2);
+        
+        integerList2.swapNodes(2000, 1000);
+        integerList2.swapNodes(10000, 5000);
+        integerList2.swapNodes(2000, 5000);
+        System.out.println(integerList2);
+
+        
     }
     
     

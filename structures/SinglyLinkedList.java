@@ -1,4 +1,5 @@
 package structures;
+import java.util.NoSuchElementException;
 
 /**
 *Singly Linked List
@@ -60,6 +61,76 @@ public class SinglyLinkedList<T extends Comparable>{
         }
         
         this.size++;
+        
+    }
+    
+    /**
+    *This function will swap the nodes containing the given data1 and data2
+    *<b>It will swap the entire node and not the values</b>
+    *@param data1
+    *@param data2
+    */
+    public void swapNodes(T data1, T data2){
+        //the list is empty
+        if(head == null){
+            return;
+        }
+        
+        if(data1.equals(data2)){
+            return;
+        }
+        
+        Node node1 = head,//reference to node containing data1
+             node2 = head,//reference to node containing data2
+             prev1 = null,//reference to the node before node1
+             prev2 = null;//reference to the node before node2
+        
+        while(node1 != null && !node1.data.equals(data1)){
+            prev1 = node1;
+            node1 = node1.next;
+        }
+       
+        if(node1 == null){
+            throw new NoSuchElementException("Element with value "+data1+" does not exist in the list");
+        }
+        
+        while(node2 != null && !node2.data.equals(data2)){
+            prev2 = node2;
+            node2 = node2.next;
+        }
+        
+        if(node2 == null){
+            throw new NoSuchElementException("Element with value "+data2+" does not exist in the list");
+        }
+        
+        if(prev1 != null){
+            prev1.next = node2;
+        }else{
+            //make node2 the new head
+            head = node2;
+        }
+        
+        if(prev2 != null){
+            prev2.next = node1;
+        }else{
+            //make node1 the new head
+            head = node1;
+        }
+        
+        if(node1.next == null){
+            //make node2 as the new tail
+            tail = node2;
+        }
+        
+        if(node2.next == null){
+            //make node1 as the new tail
+            tail = node1;
+        }
+        
+        //node1 and node2 contain references to nodes with values data1 and data2 respectively
+        Node temp = node2.next;
+        node2.next = node1.next;
+        node1.next = temp;
         
     }
     
