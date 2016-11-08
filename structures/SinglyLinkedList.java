@@ -147,9 +147,9 @@ public class SinglyLinkedList<T extends Comparable>{
             return;
         }
         
-        Node temp = head,
-             current = null,
-             prev = null;
+        Node temp = head,//temp will help us to traverse through the entire list
+             current = null,//current will point to the current node
+             prev = null;//prev will point to the previous node
         
         tail = temp;
         
@@ -163,6 +163,46 @@ public class SinglyLinkedList<T extends Comparable>{
         
     }
     
+    /**
+    *Reverses the blocks of elements of size groupSize in the list
+    *e.g. 100->200->300->400->600->800 groupSize = 3
+    * output: 300->200->100->800->600->400
+    *@param groupSize
+    */
+    public void reverseInGroups(int groupSize){
+        
+        if(isEmpty() || size() == 1)
+        {
+            //the list is empty or the list is of size 1
+            return;
+        }
+        
+        int elementCount = 0;
+        
+        Node temp = head,//temp will help us to traverse through the entire list
+             current = null,//current will point to the current node
+             prev = null;//prev will point to the previous node
+        
+        boolean isHeadUpdated = false;
+        
+        while(temp != null){
+            
+            if(elementCount == groupSize - 1){
+                if(!isHeadUpdated){
+                    head = current;
+                    isHeadUpdated = true;
+                }
+            }
+            
+            current = temp;
+            temp = temp.next;
+            current.next = prev;
+            prev = current;
+            elementCount++;
+        }
+        tail = current;
+        
+    }
     
     /**
     *Sorts the list using the Comparator
