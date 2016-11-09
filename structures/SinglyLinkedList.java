@@ -1,5 +1,6 @@
 package structures;
 import java.util.NoSuchElementException;
+import structures.node.SLNode;
 
 /**
 *Singly Linked List
@@ -13,19 +14,11 @@ import java.util.NoSuchElementException;
 */
 public class SinglyLinkedList<T extends Comparable>{
     
-    /**
-    *This node object contains the data of type <T> as specified by the user
-    */
-    private class Node{
-        T data;
-        Node next;
-    }
-    
     public SinglyLinkedList(){
         
     }
     
-    private Node head,//head pointing to the head of the list
+    private SLNode head,//head pointing to the head of the list
                 tail;//tail pointing to the end of the list
     
     private int size;//the size of the list
@@ -37,7 +30,7 @@ public class SinglyLinkedList<T extends Comparable>{
     */
     public void add(T data){
         
-        Node node = new Node();
+        SLNode node = new SLNode();
         node.data = data;
         node.next = null;
         
@@ -80,7 +73,7 @@ public class SinglyLinkedList<T extends Comparable>{
             return;
         }
         
-        Node node1 = head,//reference to node containing data1
+        SLNode node1 = head,//reference to node containing data1
              node2 = head,//reference to node containing data2
              prev1 = null,//reference to the node before node1
              prev2 = null;//reference to the node before node2
@@ -130,7 +123,7 @@ public class SinglyLinkedList<T extends Comparable>{
         }
         
         //node1 and node2 contain references to nodes with values data1 and data2 respectively
-        Node temp = node2.next;
+        SLNode temp = node2.next;
         node2.next = node1.next;
         node1.next = temp;
         
@@ -147,7 +140,7 @@ public class SinglyLinkedList<T extends Comparable>{
             return;
         }
         
-        Node temp = head,//temp will help us to traverse through the entire list
+        SLNode temp = head,//temp will help us to traverse through the entire list
              current = null,//current will point to the current node
              prev = null;//prev will point to the previous node
         
@@ -167,40 +160,49 @@ public class SinglyLinkedList<T extends Comparable>{
     *Reverses the blocks of elements of size groupSize in the list
     *e.g. 100->200->300->400->600->800 groupSize = 3
     * output: 300->200->100->800->600->400
+    *@param blockHead; the Head of the block of list
     *@param groupSize
+    *@return the Node pointing the head of the reversed list
     */
-    public void reverseInGroups(int groupSize){
+    public SLNode reverseInGroups(SLNode blockHead, int groupSize){
         
-        if(isEmpty() || size() == 1)
+        if(isEmpty() || size() == 1 || groupSize == 0)
         {
             //the list is empty or the list is of size 1
-            return;
+            return null;
         }
+        
+        if(groupSize == 1)
+        {
+            return head;
+        }
+        
+        if(blockHead == null)
+        {
+            blockHead = this.head;
+        }
+         
+        SLNode temp = blockHead,//temp will help us to traverse through the entire list
+            current = null,//current will point to the current node
+             prev = null;//prev will point to the previous node
         
         int elementCount = 0;
         
-        Node temp = head,//temp will help us to traverse through the entire list
-             current = null,//current will point to the current node
-             prev = null;//prev will point to the previous node
-        
-        boolean isHeadUpdated = false;
-        
-        while(temp != null){
-            
-            if(elementCount == groupSize - 1){
-                if(!isHeadUpdated){
-                    head = current;
-                    isHeadUpdated = true;
-                }
-            }
-            
+        while(temp != null && elementCount < groupSize)
+        {
             current = temp;
             temp = temp.next;
             current.next = prev;
             prev = current;
             elementCount++;
         }
-        tail = current;
+        
+        if(temp != null){
+            //blockHead will now become the tail of the block
+            blockHead.next = reverseInGroups(temp, groupSize);
+        }
+        //return the head of the block
+        return current;
         
     }
     
@@ -237,7 +239,7 @@ public class SinglyLinkedList<T extends Comparable>{
     public String toString(){
         String res = "[ ";
         
-        Node temp = head;
+        SLNode temp = head;
         
         while( temp != null ){
             res += temp.data + " ";

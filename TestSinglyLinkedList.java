@@ -1,6 +1,7 @@
 import structures.SinglyLinkedList;
 import java.io.*;
 import java.util.*;
+import structures.node.SLNode;
 
 class Main{
     
@@ -57,6 +58,14 @@ class Main{
         integerList2.reverse();
         System.out.println(integerList2);
 
+        
+        SLNode node = integerList2.reverseInGroups(null, 3);
+        
+        while(node != null){
+            System.out.print(node.data+" ");
+            node = node.next;
+        }
+        System.out.println();
         
     }
     
